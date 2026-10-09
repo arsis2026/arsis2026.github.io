@@ -1,55 +1,6 @@
-// Cargar catálogo desde el archivo YAML
+// Los datos ya están disponibles gracias a data.js
 let catalogoData = [];
 
-// Función para cargar el catálogo
-async function cargarCatalogo() {
-    try {
-        const response = await fetch('/data/catalogo.yml');
-        const text = await response.text();
-        // Parsear YAML simple (en producción usar una librería como js-yaml)
-        catalogoData = parseYAML(text);
-        inicializarFiltros();
-        mostrarPartituras(catalogoData);
-        mostrarDestacados();
-    } catch (error) {
-        console.error('Error cargando el catálogo:', error);
-    }
-}
-
-// Parseador YAML simple (para evitar dependencias)
-function parseYAML(yamlText) {
-    // Implementación básica - en producción usar js-yaml
-    const lines = yamlText.split('\n');
-    const result = { partituras: [] };
-    let currentPartitura = null;
-    
-    lines.forEach(line => {
-        line = line.trim();
-        if (line.startsWith('- id:')) {
-            if (currentPartitura) {
-                result.partituras.push(currentPartitura);
-            }
-            currentPartitura = { id: parseInt(line.split(':')[1].trim()) };
-        } else if (line.includes(':') && currentPartitura && !line.startsWith('-')) {
-            const [key, value] = line.split(':');
-            let cleanValue = value.trim().replace(/"/g, '').replace(/'/g, '');
-            if (cleanValue === 'true') cleanValue = true;
-            if (cleanValue === 'false') cleanValue = false;
-            if (!isNaN(cleanValue) && typeof cleanValue !== 'boolean') {
-                cleanValue = parseFloat(cleanValue);
-            }
-            currentPartitura[key.trim()] = cleanValue;
-        }
-    });
-    
-    if (currentPartitura) {
-        result.partituras.push(currentPartitura);
-    }
-    
-    return result.partituras;
-}
-
-// Inicializar filtros
 function inicializarFiltros() {
     const compositores = [...new Set(catalogoData.map(p => p.compositor))].sort();
     const generos = [...new Set(catalogoData.map(p => p.genero))].sort();
@@ -74,7 +25,6 @@ function inicializarFiltros() {
         });
     }
     
-    // Agregar event listeners
     document.getElementById('filtro-compositor')?.addEventListener('change', aplicarFiltros);
     document.getElementById('filtro-dotacion')?.addEventListener('change', aplicarFiltros);
     document.getElementById('filtro-genero')?.addEventListener('change', aplicarFiltros);
@@ -82,7 +32,6 @@ function inicializarFiltros() {
     document.getElementById('limpiar-filtros')?.addEventListener('click', limpiarFiltros);
 }
 
-// Aplicar filtros
 function aplicarFiltros() {
     const compositor = document.getElementById('filtro-compositor').value;
     const dotacion = document.getElementById('filtro-dotacion').value;
@@ -99,7 +48,6 @@ function aplicarFiltros() {
     mostrarPartituras(filtrado);
 }
 
-// Limpiar filtros
 function limpiarFiltros() {
     document.getElementById('filtro-compositor').value = '';
     document.getElementById('filtro-dotacion').value = '';
@@ -108,7 +56,6 @@ function limpiarFiltros() {
     mostrarPartituras(catalogoData);
 }
 
-// Mostrar partituras
 function mostrarPartituras(partituras) {
     const contenedor = document.getElementById('catalogo-partituras');
     const contador = document.getElementById('contador-partituras');
@@ -116,10 +63,10 @@ function mostrarPartituras(partituras) {
     if (!contenedor) return;
     
     contenedor.innerHTML = '';
-    contador.textContent = partituras.length;
+    if (contador) contador.textContent = partituras.length;
     
     if (partituras.length === 0) {
-        contenedor.innerHTML = '<p style="grid-column: 1/-1; text-align: center; padding: 3rem;">No se encontraron partituras con esos filtros.</p>';
+        contenedor.innerHTML = '<p style="grid-column: 1/-1; text-align: center; padding: 3rem; color: #666;">No se encontraron partituras con esos filtros.</p>';
         return;
     }
     
@@ -129,14 +76,17 @@ function mostrarPartituras(partituras) {
     });
 }
 
-// Crear card de partitura
 function crearCardPartitura(partitura) {
     const card = document.createElement('div');
     card.className = 'partitura-card';
     
+    const portadaHTML = partitura.portada 
+        ? `<img src="/imagenes/${partitura.portada}" alt="${partitura.titulo}" style="width:100%; height:100%; object-fit:cover;">` 
+        : '<div style="display:flex; align-items:center; justify-content:center; height:100%; color:#666; font-style:italic;">Sin portada</div>';
+    
     card.innerHTML = `
         <div class="partitura-portada">
-            ${partitura.portada ? `<img src="/imagenes/${partitura.portada}" alt="${partitura.titulo}" style="width:100%; height:100%; object-fit:cover;">` : 'Sin portada'}
+            ${portadaHTML}
         </div>
         <div class="partitura-info">
             <h3 class="partitura-titulo">${partitura.titulo}</h3>
@@ -149,7 +99,7 @@ function crearCardPartitura(partitura) {
             </div>
             ${partitura.descripcion ? `<p style="margin: 1rem 0; color: #666; font-size: 0.95rem;">${partitura.descripcion}</p>` : ''}
             ${partitura.duracion ? `<p style="font-size: 0.9rem; color: #666;">⏱ ${partitura.duracion}</p>` : ''}
-            <div class="partitura-precio">$${partitura.precio} USD</div>
+            <div class="partitura-precio">$${partitura.precio} ${partitura.precio.toString().includes('MN') ? '' : 'USD'}</div>
             <button class="btn-ver-mas" onclick="alert('Próximamente: Sistema de compra y descarga')">Ver detalles</button>
         </div>
     `;
@@ -157,9 +107,8 @@ function crearCardPartitura(partitura) {
     return card;
 }
 
-// Mostrar destacados en home
 function mostrarDestacados() {
-    const contenedor = document.getElementById('partituras-destacados');
+    const contenedor = document.getElementById('partituras-destacadas');
     if (!contenedor) return;
     
     const destacados = catalogoData.filter(p => p.destacado === true).slice(0, 3);
@@ -171,4 +120,11 @@ function mostrarDestacados() {
 }
 
 // Iniciar cuando cargue la página
-document.addEventListener('DOMContentLoaded', cargarCatalogo);
+document.addEventListener('DOMContentLoaded', function() {
+    // Los datos ya están cargados desde data.js
+    if (typeof catalogoData !== 'undefined' && catalogoData.length > 0) {
+        inicializarFiltros();
+        mostrarPartituras(catalogoData);
+        mostrarDestacados();
+    }
+});
