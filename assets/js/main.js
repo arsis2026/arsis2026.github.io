@@ -103,7 +103,7 @@ function crearCardPartitura(partitura) {
             ${partitura.descripcion ? `<p style="margin: 1rem 0; color: #666; font-size: 0.95rem;">${partitura.descripcion}</p>` : ''}
             ${partitura.duracion ? `<p style="font-size: 0.9rem; color: #666;">⏱ ${partitura.duracion}</p>` : ''}
             <div class="partitura-precio">${precioTexto}</div>
-            <button class="btn-ver-mas" onclick="alert('Próximamente: Sistema de compra y descarga')">Ver detalles</button>
+               <button class="btn-ver-mas" onclick="window.location.href='mailto:contacto@arsisediciones.com?subject=Me interesa la partitura: ${encodeURIComponent(partitura.titulo)}&body=Hola, estoy interesado en adquirir la partitura ${encodeURIComponent(partitura.titulo)} de ${encodeURIComponent(partitura.compositor)}. ¿Podrían darme más información?%0A%0AGracias.'">Ver detalles</button>
         </div>
     `;
     
