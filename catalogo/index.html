@@ -1,9 +1,63 @@
 ---
-layout: catalogo
+layout: default
 title: "Catálogo"
 ---
 
+<!-- Aquí Jekyll inyecta los datos del YAML directamente en JavaScript -->
 <script>
-  // Los datos se inyectan automáticamente desde Jekyll
   const catalogoData = {{ site.data.catalogo.partituras | jsonify }};
 </script>
+
+<section class="catalogo-section">
+    <div class="container">
+        <h1>Catálogo de Partituras</h1>
+        
+        <div class="filtros-container">
+            <div class="filtro-grupo">
+                <label for="filtro-compositor">Compositor:</label>
+                <select id="filtro-compositor" class="filtro-select">
+                    <option value="">Todos</option>
+                </select>
+            </div>
+            
+            <div class="filtro-grupo">
+                <label for="filtro-dotacion">Dotación:</label>
+                <select id="filtro-dotacion" class="filtro-select">
+                    <option value="">Todas</option>
+                    <option value="Solo guitarra">Solo guitarra</option>
+                    <option value="Dúo de guitarras">Dúo de guitarras</option>
+                    <option value="Guitarra y otros">Guitarra y otros</option>
+                </select>
+            </div>
+            
+            <div class="filtro-grupo">
+                <label for="filtro-genero">Género:</label>
+                <select id="filtro-genero" class="filtro-select">
+                    <option value="">Todos</option>
+                </select>
+            </div>
+            
+            <div class="filtro-grupo">
+                <label for="filtro-nivel">Nivel:</label>
+                <select id="filtro-nivel" class="filtro-select">
+                    <option value="">Todos</option>
+                    <option value="Principiante">Principiante</option>
+                    <option value="Intermedio">Intermedio</option>
+                    <option value="Avanzado">Avanzado</option>
+                </select>
+            </div>
+            
+            <div class="filtro-grupo">
+                <button id="limpiar-filtros" class="btn-limpiar">Limpiar</button>
+            </div>
+        </div>
+        
+        <div class="resultados-info">
+            <span id="contador-partituras">0</span> partituras encontradas
+        </div>
+        
+        <div class="partituras-grid" id="catalogo-partituras">
+            <!-- Las partituras se cargarán aquí automáticamente -->
+        </div>
+    </div>
+</section>
