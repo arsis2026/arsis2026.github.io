@@ -372,3 +372,34 @@ body {
         width: 100%;
     }
 }
+
+/* === ANIMACIÓN DEL LOGO === */
+.logo {
+    animation: floatingLogo 20s ease-in-out infinite;
+    transform-origin: center center;
+    transition: transform 0.3s ease;
+}
+
+.logo:hover {
+    animation-play-state: paused;
+    transform: scale(1.08);
+}
+
+@keyframes floatingLogo {
+    0%, 100% {
+        transform: rotate(0deg) scale(1);
+        opacity: 1;
+    }
+    25% {
+        transform: rotate(3deg) scale(1.03);
+        opacity: 0.95;
+    }
+    50% {
+        transform: rotate(0deg) scale(1.05);
+        opacity: 1;
+    }
+    75% {
+        transform: rotate(-3deg) scale(1.03);
+        opacity: 0.95;
+    }
+}
