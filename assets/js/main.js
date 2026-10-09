@@ -1,5 +1,4 @@
-// Los datos ya están disponibles gracias a data.js
-let catalogoData = [];
+// catalogoData ya está disponible desde catalogo/index.html
 
 function inicializarFiltros() {
     const compositores = [...new Set(catalogoData.map(p => p.compositor))].sort();
@@ -84,6 +83,10 @@ function crearCardPartitura(partitura) {
         ? `<img src="/imagenes/${partitura.portada}" alt="${partitura.titulo}" style="width:100%; height:100%; object-fit:cover;">` 
         : '<div style="display:flex; align-items:center; justify-content:center; height:100%; color:#666; font-style:italic;">Sin portada</div>';
     
+    const precioTexto = typeof partitura.precio === 'string' 
+        ? `$${partitura.precio}` 
+        : `$${partitura.precio} USD`;
+    
     card.innerHTML = `
         <div class="partitura-portada">
             ${portadaHTML}
@@ -99,7 +102,7 @@ function crearCardPartitura(partitura) {
             </div>
             ${partitura.descripcion ? `<p style="margin: 1rem 0; color: #666; font-size: 0.95rem;">${partitura.descripcion}</p>` : ''}
             ${partitura.duracion ? `<p style="font-size: 0.9rem; color: #666;">⏱ ${partitura.duracion}</p>` : ''}
-            <div class="partitura-precio">$${partitura.precio} ${partitura.precio.toString().includes('MN') ? '' : 'USD'}</div>
+            <div class="partitura-precio">${precioTexto}</div>
             <button class="btn-ver-mas" onclick="alert('Próximamente: Sistema de compra y descarga')">Ver detalles</button>
         </div>
     `;
@@ -121,10 +124,11 @@ function mostrarDestacados() {
 
 // Iniciar cuando cargue la página
 document.addEventListener('DOMContentLoaded', function() {
-    // Los datos ya están cargados desde data.js
-    if (typeof catalogoData !== 'undefined' && catalogoData.length > 0) {
+    if (typeof catalogoData !== 'undefined' && catalogoData && catalogoData.length > 0) {
         inicializarFiltros();
         mostrarPartituras(catalogoData);
         mostrarDestacados();
+    } else {
+        console.error('No se encontraron datos del catálogo');
     }
 });
