@@ -1,58 +1,14 @@
 partituras:
   - id: 1
-    titulo: "Estudio en Mi menor"
-    compositor: "Fernando Sor"
-    dotacion: "Solo guitarra"
-    genero: "Estudio"
-    tipo: "Original"
-    nivel: "Intermedio"
-    duracion: "3:00"
-    descripcion: "Estudio técnico enfocado en arpegios"
-    archivo: "sor_estudio_mi_menor.pdf"
-    portada: "sor_estudio.jpg"
-    precio: 5.99
-    destacado: true
-
-  - id: 2
-    titulo: "Asturias (Leyenda)"
-    compositor: "Isaac Albéniz"
-    arreglista: "Arsis Ediciones"
-    dotacion: "Solo guitarra"
-    genero: "Española"
-    tipo: "Arreglo"
-    nivel: "Avanzado"
-    duracion: "6:00"
-    descripcion: "Arreglo para guitarra solo de la famosa obra de Albéniz"
-    archivo: "albeniz_asturias.pdf"
-    portada: "albeniz_asturias.jpg"
-    precio: 8.99
-    destacado: true
-
-  - id: 3
-    titulo: "Sonata en La mayor"
-    compositor: "Domenico Scarlatti"
-    arreglista: "Arsis Ediciones"
-    dotacion: "Dúo de guitarras"
-    genero: "Sonata"
-    tipo: "Arreglo"
-    nivel: "Avanzado"
-    duracion: "8:00"
-    descripcion: "Transcripción para dos guitarras"
-    archivo: "scarlatti_sonata_duo.pdf"
-    portada: "scarlatti_sonata.jpg"
-    precio: 12.99
-    destacado: false
-
-  - id: 4
     titulo: "Canción de Cuna"
     compositor: "Óscar Cárdenas"
-    dotacion: "Guitarra y voz"
+    dotacion: "Solo guitarra"
     genero: "Contemporánea"
     tipo: "Original"
-    nivel: "Intermedio"
-    duracion: "4:00"
-    descripcion: "Obra original para guitarra y soprano"
-    archivo: "cardenas_cancion_cuna.pdf"
-    portada: "cardenas_cancion.jpg"
-    precio: 7.99
+    nivel: "Principiante"
+    duracion: "2:00"
+    descripcion: "Obra original construida a partir de las notas Si y Sol sostenido, onomatopeya del nombre Cynthia. Dedicada con amor."
+    archivo: "cancion_de_cuna.pdf"
+    portada: ""
+    precio: "50 MN"
     destacado: true
