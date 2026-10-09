@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ site.title }}{% if page.title %} - {{ page.title }}{% endif %}</title>
+    <link rel="stylesheet" href="{{ '/assets/css/style.css' | relative_url }}">
+    <link rel="icon" href="{{ '/imagenes/logo.png' | relative_url }}" type="image/png">
+</head>
+<body>
+    <header class="main-header">
+        <div class="container">
+            <div class="logo-container">
+                <img src="{{ '/imagenes/logo.png' | relative_url }}" alt="Arsis Ediciones Musicales" class="logo">
+            </div>
+            <nav class="main-nav">
+                <ul>
+                    <li><a href="{{ '/' | relative_url }}">Inicio</a></li>
+                    <li><a href="{{ '/catalogo' | relative_url }}">Catálogo</a></li>
+                    <li><a href="#contacto">Contacto</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        {{ content }}
+    </main>
+
+    <footer class="main-footer" id="contacto">
+        <div class="container">
+            <p>&copy; 2026 Arsis Ediciones Musicales. Todos los derechos reservados.</p>
+            <p>Contacto: <a href="mailto:contacto@arsisediciones.com">contacto@arsisediciones.com</a></p>
+        </div>
+    </footer>
+
+    <script src="{{ '/assets/js/main.js' | relative_url }}"></script>
+</body>
+</html>

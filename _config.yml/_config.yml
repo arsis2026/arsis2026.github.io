@@ -1,0 +1,25 @@
+title: "Arsis Ediciones Musicales"
+description: "Editorial especializada en partituras para guitarra clásica"
+baseurl: ""
+url: ""
+
+# Configuración de Jekyll
+markdown: kramdown
+theme: null
+
+# Exclusión de archivos
+exclude:
+  - README.md
+  - Gemfile
+  - Gemfile.lock
+
+# Inclusión de archivos
+include:
+  - _pages
+
+# Configuración de Jekyll
+defaults:
+  - scope:
+      path: ""
+    values:
+      layout: "default"
