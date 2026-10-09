@@ -2,3 +2,8 @@
 layout: catalogo
 title: "Catálogo"
 ---
+
+<script>
+  // Los datos se inyectan automáticamente desde Jekyll
+  const catalogoData = {{ site.data.catalogo.partituras | jsonify }};
+</script>
