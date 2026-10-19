@@ -1,4 +1,4 @@
-// catalogoData ya está disponible desde catalogo/index.html
+// catalogoData ya está disponible desde _layouts/default.html
 
 function inicializarFiltros() {
     // Filtramos para no incluir el placeholder en las opciones del filtro
@@ -47,8 +47,7 @@ function aplicarFiltros() {
     if (genero) filtrado = filtrado.filter(p => p.genero === genero);
     if (nivel) filtrado = filtrado.filter(p => p.nivel === nivel);
     
-    // Si hay filtros activos, mostramos solo los resultados. 
-    // Si no hay filtros, agregamos el placeholder al final.
+    // Si no hay filtros activos, agregamos el placeholder al final
     const hayFiltrosActivos = compositor || dotacion || genero || nivel;
     
     if (!hayFiltrosActivos) {
@@ -103,7 +102,7 @@ function crearCardPartitura(partitura) {
     if (partitura.es_placeholder) {
         card.className = 'partitura-card placeholder';
         card.innerHTML = `
-            <div class="partitura-portada">🎼</div>
+            <div class="partitura-portada"></div>
             <div class="partitura-info">
                 <h3 class="partitura-titulo">${partitura.titulo}</h3>
                 <p class="partitura-compositor">${partitura.compositor}</p>
@@ -179,6 +178,6 @@ document.addEventListener('DOMContentLoaded', function() {
         mostrarPartituras(datosIniciales);
         mostrarDestacados();
     } else {
-        console.error('No se encontraron datos del catálogo');
+        console.warn('Los datos del catálogo aún no están disponibles en esta vista.');
     }
 });
