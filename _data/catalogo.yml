@@ -1,14 +1,15 @@
 partituras:
-  - id: 1
-    titulo: "Canción de Cuna"
-    compositor: "Óscar Cárdenas"
+  - id: 0
+    titulo: "Así se verá tu obra"
+    compositor: "Tu nombre aquí"
     dotacion: "Solo guitarra"
     genero: "Contemporánea"
     tipo: "Original"
-    nivel: "Principiante"
-    duracion: "2:00"
-    descripcion: "Obra original construida a partir de las notas Si y Sol sostenido, onomatopeya del nombre Cynthia. Dedicada con amor."
-    archivo: "cancion_de_cuna.pdf"
+    nivel: "Intermedio"
+    duracion: "3:00"
+    descripcion: "Envíanos tu composición o arreglo y lo publicaremos en nuestro catálogo con edición profesional, códigos QR multimedia y promoción en nuestra red de intérpretes. Conservas el 100% de tu autoría."
+    archivo: ""
     portada: ""
-    precio: "50 MN"
+    precio: "Consultar"
     destacado: true
+    es_placeholder: true
