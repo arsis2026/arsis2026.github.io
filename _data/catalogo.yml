@@ -1,15 +1,15 @@
 partituras:
   - id: 0
     titulo: "Así se verá tu obra"
-    compositor: "Tu nombre aquí"
+    compositor: "¿Serás tú el próximo compositor publicado?"
     dotacion: "Solo guitarra"
     genero: "Contemporánea"
     tipo: "Original"
-    nivel: "Intermedio"
-    duracion: "3:00"
+    nivel: "Todos los niveles"
+    duracion: "Por definir"
     descripcion: "Envíanos tu composición o arreglo y lo publicaremos en nuestro catálogo con edición profesional, códigos QR multimedia y promoción en nuestra red de intérpretes. Conservas el 100% de tu autoría."
     archivo: ""
     portada: ""
     precio: "Consultar"
-    destacado: true
+    destacado: false
     es_placeholder: true
